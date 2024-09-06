@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagnóstico de Síntomas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .Respuesta {
+            color: red;
+            border: 2px solid black;
+            border-radius: 5px;
+            padding: 10px;
+            text-align: center;
+            display: inline-block;
+            width: 200px;
+            box-sizing: border-box;
+            font-size: 18px;
+            margin: 20px 0;
+        }
+        .Recomendaciones {
+            border: 2px solid black;
+            border-radius: 5px;
+            padding: 10px;
+            text-align: left;
+            display: inline-block;
+            width: 100%;
+            box-sizing: border-box;
+            font-size: 16px;
+            margin: 20px 0;
+            background-color: #f9f9f9;
+        }
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        select, input[type="submit"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        input[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Hola, Bienvenido</h1>
+        <h2>¿Tienes gripe o resfriado?</h2>
+        <h3 class="Respuesta">{{ greeting if greeting else "Respuesta!" }}</h3>
+        {% if recomendaciones %}
+            <div class="Recomendaciones">
+                <h2>Recomendaciones:</h2>
+                <p>{{ recomendaciones }}</p>
+            </div>
+        {% endif %}
+        <form method="post">
+            <fieldset>
+                <legend>Información de Síntomas</legend>
+
+                <label for="comienzo">Indique en una escala del 0 al 10 cómo ha sido el inicio de sus síntomas:</label>
+                <select id="comienzo" name="comienzo" required aria-label="Comienzo de síntomas">
+                    <option value="" disabled selected>Selecciona una opción</option>
+                    {% for i in range(11) %}
+                        <option value="{{ i }}">{{ i }}</option>
+                    {% endfor %}
+                </select>
+
+                <label for="fiebre">Indique en una escala del 0 al 10 la intensidad de su fiebre:</label>
+                <select id="fiebre" name="fiebre" required aria-label="Fiebre">
+                    <option value="" disabled selected>Selecciona una opción</option>
+                    {% for i in range(11) %}
+                        <option value="{{ i }}">{{ i }}</option>
+                    {% endfor %}
+                </select>
+
+                <label for="dolores">Indique en una escala del 0 al 10 la intensidad de sus dolores:</label>
+                <select id="dolores" name="dolores" required aria-label="Dolores">
+                    <option value="" disabled selected>Selecciona una opción</option>
+                    {% for i in range(11) %}
+                        <option value="{{ i }}">{{ i }}</option>
+                    {% endfor %}
+                </select>
+
+                <label for="fatiga">Indique en una escala del 0 al 10 la intensidad de la fatiga o debilidad que siente:</label>
+                <select id="fatiga" name="fatiga" required aria-label="Fatiga, debilidad">
+                    <option value="" disabled selected>Selecciona una opción</option>
+                    {% for i in range(11) %}
+                        <option value="{{ i }}">{{ i }}</option>
+                    {% endfor %}
+                </select>
+
+                <label for="dolor_cabeza">Indique en una escala del 0 al 10 la intensidad del dolor de cabeza que siente:</label>
+                <select id="dolor_cabeza" name="dolor_cabeza" required aria-label="Dolor de cabeza">
+                    <option value="" disabled selected>Selecciona una opción</option>
+                    {% for i in range(11) %}
+                        <option value="{{ i }}">{{ i }}</option>
+                    {% endfor %}
+                </select>
+
+                <label for="congestion">Indique en una escala del 0 al 10 la intensidad de la congestión, estornudos o dolor de garganta que está experimentando:</label>
+                <select id="congestion" name="congestion" required aria-label="Congestión, estornudos o dolor de garganta">
+                    <option value="" disabled selected>Selecciona una opción</option>
+                    {% for i in range(11) %}
+                        <option value="{{ i }}">{{ i }}</option>
+                    {% endfor %}
+                </select>
+
+                <input type="submit" value="Enviar">
+            </fieldset>
+        </form>
+    </div>
+</body>
+</html>
